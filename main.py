@@ -9,6 +9,23 @@ import os
 from dotenv import load_dotenv
 import numpy as np
 
+import pymongo
+import certifi
+
+# Load MongoDB URI from .env
+MONGO_URI = os.getenv("MONGO_URI")
+
+# Establish connection with SSL certificate handling
+client = pymongo.MongoClient(MONGO_URI, tlsCAFile=certifi.where())
+
+# Check if connection is successful
+try:
+    client.server_info()
+    print("✅ MongoDB Connection Successful")
+except Exception as e:
+    print(f"❌ MongoDB Connection Failed: {e}")
+
+
 load_dotenv()
 
 app = FastAPI()
