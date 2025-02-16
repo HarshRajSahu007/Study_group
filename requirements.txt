@@ -1,7 +1,7 @@
-fastapi 
+fastapi
 uvicorn
 pymongo
 pinecone-client
 sentence-transformers
 python-dotenv
-numpy
+certifi
