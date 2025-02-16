@@ -16,13 +16,14 @@ load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI")
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # MongoDB Connection
 try:
-    client = MongoClient(MONGO_URI, tlsCAFile=certifi.where())
+    client = MongoClient(MONGO_URI, tlsCAFile=certifi.where(), tlsAllowInvalidCertificates=True)
     db = client["group_chat"]
     students_collection = db["students"]
     groups_collection = db["groups"]
